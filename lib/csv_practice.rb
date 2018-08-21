@@ -65,8 +65,12 @@ def all_gold_medal_winners(olympic_data)
   return gold_winners
 
 end
-
-def metals_sorted_by_country(metal_totals)
+# this method takes a list of countries and their medal totals and returns the 
+# same list, sorted by country
+def medals_sorted_by_country(metal_totals)
+  sort_country = metal_totals.sort_by { |team_hash| team_hash[:country] }
+  # ap sort_country.first(5)
+  return sort_country
 
 end
 
