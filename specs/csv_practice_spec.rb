@@ -192,8 +192,8 @@ describe 'CSV Practice Methods' do
       expect(converted_data.class).must_equal Array
       converted_data.each_with_index do |entry, index|
         expect(entry.class).must_equal Hash
-        # puts "#{data[index]}"
-        # puts "Converted data #{entry}"
+        puts "#{entry['Height']}"
+        puts "Converted data #{data[index]['Height']}"
         expect(entry['Height']).must_be_close_to(data[index]['Height'].to_f / 2.5)
       end
     end
