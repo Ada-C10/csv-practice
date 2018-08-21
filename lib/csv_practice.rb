@@ -73,11 +73,21 @@ def medals_sorted_by_country(metal_totals)
   return sort_country
 
 end
-
-def country_with_most_metals(metal_totals)
-
+# This method returns the country with the highest number of medals
+def country_with_most_medals(metal_totals)
+  big_win = metal_totals.max_by { |team_hash| team_hash[:total_medals] }
+  # ap big_win
+  return big_win
 end
-
+# this method takes an array of hashes listing all the olympic data and returns 
+# a similar list, but with the athlete height in inches instead of centimeters.
 def athlete_height_in_inches(olympic_data)
+  olympic_data_in = olympic_data.dup
+  # ap olympic_data.first(5)
+  olympic_data_in.each do |ath_hash|
+    ath_hash['Height'] = ((ath_hash['Height'].to_f) * 0.4).round(3)
+  end
 
+  # ap olympic_data_in.first(5)
+  return olympic_data_in
 end
