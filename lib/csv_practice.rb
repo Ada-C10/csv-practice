@@ -38,22 +38,12 @@ def total_medals_per_country(olympic_data)
   # tally array of hashes by medals won
   team_grp.each_with_index do |k, v|
     # each team gets its own hash
-    medal_hash = {k[0] => k[1].count}
-    #medal_hash[:country] = k[0]
-    #medal_hash[:total_medals] = k[1].count
+    medal_hash = {:country => k[0], :total_medals => k[1].count}
     # shovel each hash into medal arr
     medal_arr << medal_hash
   end
-   #     #medal_hash = {[Tea]} == '' }
-  #     # if medals.include?(hash['Medal'])
-  #     #   medal_tally += 1
-  #     #   ap medal_tally
-  #     #   team = k
-  #     #   medal_hash = {k => medal_tally}
-  #     # end
-  # p medal_arr['Norway'].value
+  
   # ap medal_arr
-  p medal_arr.class
   return medal_arr
 end
 # ap olympic_data[0]['Medal']
