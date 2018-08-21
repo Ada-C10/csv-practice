@@ -50,10 +50,8 @@ end
 # medal_hash = total_medals_per_country(olympic_data)
 
 
-
-
 def save_medal_totals(filename, medal_totals)
-  CSV.open(medal_totals, 'w') do |csv|
+  CSV.open(filename, 'w') do |csv|
     csv << medal_totals.first.keys
     medal_totals.each do |team|
       csv << team.values
