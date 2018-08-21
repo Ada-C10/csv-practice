@@ -3,20 +3,22 @@ require 'csv'
 require 'awesome_print'
 require 'pp'
 
-# filename = "../data/athlete_events.csv"
+
 # Part 1 - CSV Practice
+# This method takes a file name and returns the data from the file as an array of Hashes
 def load_data(filename)
   olympic_data = CSV.open(filename, 'r', headers: true).map do |item|
     item.to_h
   end
-  p olympic_data.class
+  # p olympic_data.class
   return olympic_data
   
 end
-# olympic_data = load_data("../data/athlete_events.csv")
-# ap olympic_data.class
 
 
+# This method takes the array of hashes read in from the file in load_data
+# and returns an array of hashes with each element having a country name (team),
+# and number of medals that country (team) has won.
 def total_medals_per_country(olympic_data)
   medal_arr = []
   medal_hash = {}
@@ -31,10 +33,8 @@ def total_medals_per_country(olympic_data)
   # reduce array of hashes to winners only
   winners = []
   winners = teams.select { |item| medals.include?(item['Medal'])}
-  # pp winners
   # consolidate teams, each country = array of hashes w/ medal win
   team_grp = winners.group_by { |team| team['Team']}
-  # pp team_grp
   # tally array of hashes by medals won
   team_grp.each_with_index do |k, v|
     # each team gets its own hash
@@ -46,10 +46,9 @@ def total_medals_per_country(olympic_data)
   # ap medal_arr
   return medal_arr
 end
-# ap olympic_data[0]['Medal']
-# medal_hash = total_medals_per_country(olympic_data)
 
-
+# this method writes the medal total information returned from
+# total_medals_per_country to another CSV
 def save_medal_totals(filename, medal_totals)
   CSV.open(filename, 'w') do |csv|
     csv << medal_totals.first.keys
@@ -58,17 +57,12 @@ def save_medal_totals(filename, medal_totals)
     end
   end
 end
-# def save_planets(planet_data, filename: 'data/close_planet.csv')
-#   CSV.open(filename, 'w') do |csv|
-#     csv << planet_data.first.keys
-#     planet_data.each do |planet|
-#       csv << planet.values
-#     end
-#   end
-# end
-# Part 2 - More Enumerable Practice
 
+# this method returns an array the names of all Gold medal winners
 def all_gold_medal_winners(olympic_data)
+  gold_winners = olympic_data.select { |ath_hash| ath_hash['Medal'] == 'Gold' }
+  # ap gold_winners
+  return gold_winners
 
 end
 
